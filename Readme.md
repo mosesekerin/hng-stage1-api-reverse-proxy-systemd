@@ -144,7 +144,7 @@ GET https://api.mosesekerin.name.ng/me
 
 ```bash
 # Clone and install
-git clone https://github.com/mosesekerin/minimal-api.git
+git clone https://github.com/mosesekerin/hng-stage1-api-reverse-proxy-systemd.git
 cd minimal-api
 npm install
 
