@@ -1,3 +1,8 @@
+## Live URL
+
+**`https://api.mosesekerin.name.ng`**
+
+```bash
 # Quick validation
 curl -s https://api.mosesekerin.name.ng/       | python3 -m json.tool
 curl -s https://api.mosesekerin.name.ng/health | python3 -m json.tool
@@ -13,3 +18,4 @@ curl -sI https://api.mosesekerin.name.ng/health
 # HTTP/2 200
 # content-type: application/json; charset=utf-8
 # strict-transport-security: max-age=63072000; includeSubDomains
+```
