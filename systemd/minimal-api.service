@@ -1,0 +1,45 @@
+[Unit]
+Description=Minimal Node.js API
+Documentation=https://github.com/mosesekerin/hng-stage1-api-reverse-proxy-systemd.git
+After=network.target
+
+[Service]
+Type=simple
+
+# Run as a non-root user — never run Node as root in production
+User=nodeuser
+Group=nodeuser
+
+# Absolute path to your app directory
+WorkingDirectory=/var/www/minimal-api
+
+# Use the full path to node — avoid PATH ambiguity
+ExecStart=/usr/bin/node app.js
+
+# --- Restart Policy ---
+# Restart on any non-clean exit (crash, OOM kill, etc.)
+Restart=on-failure
+RestartSec=5s
+
+# Give up after 3 restart attempts within 60 seconds
+# (prevents infinite crash loops consuming resources)
+StartLimitInterval=60s
+StartLimitBurst=3
+
+# --- Environment ---
+Environment=NODE_ENV=production
+Environment=PORT=3000
+
+# --- Logging ---
+# stdout/stderr go to journald automatically — no need for a log file
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=minimal-api
+
+# --- Security Hardening ---
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+# Start this service when the system reaches multi-user (normal boot) mode
+WantedBy=multi-user.target
